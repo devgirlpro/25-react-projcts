@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
 const RandomColor = () => {
@@ -45,6 +46,12 @@ const RandomColor = () => {
     setColor(`rgb(${red}, ${green}, ${blue})`);
   };
 
+  useEffect(() => {
+    typeOfColor === 'rgb'
+      ? createRandomRgbColorHandle()
+      : createRandomHexColorHandle();
+  }, [typeOfColor]);
+
   return (
     <div
       className="container"
@@ -76,7 +83,7 @@ const RandomColor = () => {
           gap: '20px',
         }}
       >
-        <h3>{typeOfColor === "rgb" ? "RGB Color" : "HEX Color"}</h3>
+        <h3>{typeOfColor === 'rgb' ? 'RGB Color' : 'HEX Color'}</h3>
         <h1>{color}</h1>
       </div>
     </div>
